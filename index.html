@@ -50,14 +50,15 @@
   /* On phones drop it back into the flow above the title so it can't overlap. */
   @media (max-width: 640px) { .brandline { position: static; margin: 0 0 12px; } }
 
-  /* Episode switcher (series only): a segmented control under the credits that
-     swaps which episode is shown, in-page. */
-  .epstrip { display: inline-flex; flex-wrap: wrap; gap: 2px; background: var(--chip);
-             border-radius: 9px; padding: 2px; max-width: 100%; margin-top: 16px; }
-  .ep-btn { border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 13px;
-            font-weight: 600; padding: 5px 12px; border-radius: 7px; cursor: pointer;
-            white-space: nowrap; max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
-  .ep-btn.on { background: var(--accent); color: #fff; }
+  /* Episode switcher (series only): individual pills under the credits that
+     swap which episode is shown, in-page. Pills wrap cleanly on narrow phones
+     (a wrapping segmented block looked bulky). */
+  .epstrip { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .ep-btn { border: 1px solid var(--line-strong); background: var(--card); color: var(--muted);
+            font: inherit; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px;
+            cursor: pointer; white-space: nowrap; max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
+  .ep-btn:hover { color: var(--text); border-color: var(--muted); }
+  .ep-btn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
   /* The per-episode subtitle (episode/version name · scene/shot counts). */
   .ep-sub { max-width: 1240px; margin: 0 auto; padding: 0 28px; color: var(--muted); font-size: 14px; }
 
@@ -2472,7 +2473,7 @@
 
 <button class="totop" id="totop" type="button" aria-label="Back to top" hidden>↑</button>
 
-<script>var CP_EPISODES = [[{"n":1,"sunset":"","goldenPM":"","setups":7,"goldenAM":"","date":"","iso":"","notes":"","shots":0,"sunrise":"","entries":[{"s":3,"shots":[],"all":true,"note":""},{"note":"","s":4,"all":true,"shots":[]},{"shots":[],"note":"","s":8,"all":true},{"all":true,"shots":[],"s":9,"note":""},{"s":12,"note":"","shots":[],"all":true},{"shots":[],"note":"","all":true,"s":13},{"s":14,"all":true,"shots":[],"note":""}]},{"notes":"","date":"","entries":[{"note":"","shots":[],"all":true,"s":6},{"s":7,"all":true,"shots":[],"note":""},{"shots":[],"all":true,"s":10,"note":""},{"all":true,"shots":[],"note":"","s":11},{"s":5,"shots":[],"note":"","all":true}],"n":2,"shots":0,"sunrise":"","sunset":"","goldenAM":"","setups":5,"goldenPM":"","iso":""}],[],[],[]].map(function (s) { return { schedule: s }; });</script>
+<script>var CP_EPISODES = [[{"goldenPM":"","shots":0,"date":"","goldenAM":"","entries":[{"note":"","s":3,"all":true,"shots":[]},{"note":"","shots":[],"s":4,"all":true},{"shots":[],"s":8,"all":true,"note":""},{"note":"","all":true,"shots":[],"s":9},{"all":true,"shots":[],"note":"","s":12},{"shots":[],"all":true,"s":13,"note":""},{"s":14,"note":"","all":true,"shots":[]}],"iso":"","setups":7,"n":1,"notes":"","sunrise":"","sunset":""},{"sunset":"","n":2,"notes":"","goldenAM":"","goldenPM":"","entries":[{"shots":[],"note":"","s":6,"all":true},{"all":true,"s":7,"shots":[],"note":""},{"shots":[],"note":"","s":10,"all":true},{"note":"","shots":[],"s":11,"all":true},{"s":5,"all":true,"shots":[],"note":""}],"date":"","iso":"","shots":0,"sunrise":"","setups":5}],[],[],[]].map(function (s) { return { schedule: s }; });</script>
 <script>
 (function () {
   function qsa(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
